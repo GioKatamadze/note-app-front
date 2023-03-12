@@ -1,42 +1,68 @@
-import React, { useEffect } from "react";
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link';
-import Error from "../error/error.jsx";
-import Spinner from "../spinner/spinner.jsx";
-import Button from "./button/login-button.jsx";
+import React, { useEffect, useState } from "react";
 import { StyledForm, Paragraph } from "./style";
-
+import { useNavigate, Link } from 'react-router-dom'
+import { userLogin } from "../../services/userServices";
+import { HashLink } from 'react-router-hash-link';
+import toast from 'react-hot-toast';
+import Button from "./button/login-button.jsx";
 
 const LoginForm = () => {
 
-    const { register, handleSubmit } = useForm()
-    const navigate = useNavigate()
-  
-    const submitForm = (data) => {
-    }
-  
+    const navigate = useNavigate();
+    const [values, setValues] = useState({ email: "", password: "" });
+
+    const generateError = (error) =>
+      toast.error(error);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const { data } = await userLogin(values)
+        if (data) {
+          if (data.errors) {
+            const { email, password } = data.errors;
+            if (email) generateError(email);
+            else if (password) generateError(password);
+          } else {
+            localStorage.setItem("token", data.token)
+            navigate("/")
+            toast('Welcome!', {
+              icon: '👏',
+            });
+          }
+        }
+      } catch (ex) {
+        console.log(ex);
+      }
+    };
+
+    useEffect(() => {
+      if (localStorage.token) {
+        navigate("/");
+      }
+    }, [localStorage.token, navigate]);
     return (
         <StyledForm>
-            {/* {error && <Error>{error}</Error>} */}
-            <form onSubmit={handleSubmit(submitForm)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <h1>Login</h1>
                 <input
                     type="email"
                     placeholder="Email address"
                     name="email"
-                    {...register('email')}
+                    onChange={(e) =>
+                        setValues({ ...values, [e.target.name]: e.target.value })
+                      }
                     required/>
                 <input
                     type="password"
                     placeholder="Password"
                     name="password"
-                    {...register('password')}
+                    onChange={(e) =>
+                        setValues({ ...values, [e.target.name]: e.target.value })
+                      }
                     required/>
                 <Button 
                     className="button" 
                     type="submit" >
-                        {/* // {loading ? <Spinner /> : 'Login to your account'} */}
                         Login to your account
                 </Button>
                 <Paragraph>
@@ -46,7 +72,7 @@ const LoginForm = () => {
             </form>
             <p className="lastp">
                 To test app, use <br/>
-                email: demo@example.com <br/>
+                email: demo@user.com <br/>
                 password: demo123
             </p>
             <p className="lastp">

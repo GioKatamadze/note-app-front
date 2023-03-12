@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import SignIn from "./Pages/sign-in/signin.jsx";
 import SignUp from "./Pages/sign-up/signup.jsx";
+import Home from "./Pages/home/Home.jsx";
 import ProtectedRoute from "./routing/protectedRoute.js";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Toaster />
         <Routes>
           <Route element={<ProtectedRoute />}>
-            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/" element={<Home />} />
           </Route>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
