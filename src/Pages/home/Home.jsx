@@ -1,17 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import toast from 'react-hot-toast';
+
+import { StyledContainer, Wrapper } from "./style.jsx";
+import Header from "../../components/header/Header.jsx";
 
 const Home = () => {
 
-      const navigate = useNavigate();
-      const logOut = () => {
-        localStorage.removeItem("token")
-        navigate("/signin");
-      }
-    return <h1>Home
-        <button onClick={logOut}>Log out</button>
-    </h1>
+
+
+    return (
+        <StyledContainer>
+            <Wrapper>
+                <Header />
+            </Wrapper>
+       </StyledContainer>
+    )
 }
 
 export default Home

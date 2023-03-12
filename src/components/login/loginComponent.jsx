@@ -23,7 +23,13 @@ const LoginForm = () => {
             if (email) generateError(email);
             else if (password) generateError(password);
           } else {
-            localStorage.setItem("token", data.token)
+            const newData = {
+              token: data.token,
+              name: data.name,
+              email: data.email,
+              user_id: data.email
+            }
+            localStorage.setItem("newData", JSON.stringify(newData))
             navigate("/")
             toast('Welcome!', {
               icon: '👏',
