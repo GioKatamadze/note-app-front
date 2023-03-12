@@ -1,71 +1,76 @@
-import { useState, useEffect } from "react";
-import { useForm } from 'react-hook-form'
+import { useState } from "react";
 import { useNavigate  } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { StyledForm, Paragraph } from "./style.jsx"
+import { userSignup } from "../../services/userServices.js";
 import Button from "../login/button/login-button.jsx";
 import Error from "../error/error.jsx";
-import Spinner from "../spinner/spinner.jsx";
 import toast from 'react-hot-toast';
-import { StyledForm, Paragraph } from "./style.jsx"
 
 const RegisterForm = () => {
 
   const [customError, setCustomError] = useState(null)
-  const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
+  const [values, setValues] = useState({
+    name: "",
+    email: "", 
+    password: "" 
+  })
 
-  // useEffect(() => {
-  //   if (userInfo) navigate('/')
-  //   if (success) {
-  //     navigate('/signin')
-  //     toast.success('Registered Successfully!')
-  //   }
-  // }, [navigate, userInfo, success])
+  const generateError = (error) =>
+    toast.error(error);
 
-  const submitForm = (data) => {
-    if (data.password !== data.confirmPassword) {
-      setCustomError('Password mismatch')
-      return
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await userSignup(values)
+      if (data) {
+        if (data.errors) {
+          const { email, password } = data.errors;
+          if (email) generateError(email);
+          else if (password) generateError(password);
+        } else {
+            toast.success("User Created Successfully")
+            navigate("/signin");
+        }
+      }
+    } catch (ex) {
+      console.log(ex);
     }
-    data.email = data.email.toLowerCase()
-    // dispatch(registerUser(data))
-  }
-
+  };
     return (
         <StyledForm>
-            {/* {error && <Error>{error}</Error>} */}
             {customError && <Error>{customError}</Error>}
-            <form onSubmit={handleSubmit(submitForm)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <h1>Sign Up</h1>
                 <input
                     type="name"
                     placeholder="Full name"
                     name="name"
-                    {...register('name')}
+                    onChange={(e) =>
+                        setValues({ ...values, [e.target.name]: e.target.value })
+                      }
                     required/>
                 <input
                     type="email"
                     placeholder="Email address"
                     name="email"
-                    {...register('email')}
+                    onChange={(e) =>
+                        setValues({ ...values, [e.target.name]: e.target.value })
+                      }
                     required/>
                 <input
                     type="password"
                     placeholder="Password"
                     name="password"
-                    {...register('password')}
-                    required/>
-                <input
-                    type="password"
-                    placeholder="Repeat password"
-                    name="confirmPassword"
-                    {...register('confirmPassword')}
+                    onChange={(e) =>
+                        setValues({ ...values, [e.target.name]: e.target.value })
+                      }
                     required/>
                 <Button 
                     className="button" 
                     type="submit" 
                     >
-                      {/* {loading ? <Spinner /> : 'Create an account'} */}
                       Create an account
                 </Button>
                     <Paragraph>

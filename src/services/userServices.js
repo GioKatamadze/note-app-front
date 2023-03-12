@@ -1,9 +1,9 @@
 import instance from "./axios.js";
 
-export const editNote = (data) => {
+export const userLogin = (data) => {
   return instance.post("/login", data);
 };
 
-export const deleteNote = (data) => {
+export const userSignup = (data) => {
   return instance.post("/register", data);
 };
