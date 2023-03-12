@@ -7,8 +7,13 @@ const NoteComponent = () => {
 
   const navigate = useNavigate()
   const [data, setData] = useState([])
-  const Allnotes = data.map((note) => {
+  const user = localStorage.getItem("user")
+  let finalUser = user.replaceAll('"', '')
+  const myNotes = data.filter(note => {
+    return note.user_id === finalUser;
+  });
 
+  const Notes = myNotes.map((note) => {
     return (
         <NoteDiv 
         key={note.id}
@@ -39,7 +44,7 @@ useEffect(() => {
     return (
         <StyledContainer>
           <NoteDivWrapper>
-            {Allnotes}
+            {Notes}
           </NoteDivWrapper>
        </StyledContainer>
     )
