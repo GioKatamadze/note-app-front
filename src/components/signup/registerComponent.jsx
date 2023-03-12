@@ -4,7 +4,6 @@ import { HashLink } from 'react-router-hash-link';
 import { StyledForm, Paragraph } from "./style.jsx"
 import { userSignup } from "../../services/userServices.js";
 import Button from "../login/button/login-button.jsx";
-import Error from "../error/error.jsx";
 import toast from 'react-hot-toast';
 
 const RegisterForm = () => {
@@ -40,7 +39,6 @@ const RegisterForm = () => {
   };
     return (
         <StyledForm>
-            {customError && <Error>{customError}</Error>}
             <form onSubmit={(e) => handleSubmit(e)}>
                 <h1>Sign Up</h1>
                 <input

@@ -26,14 +26,33 @@ export const StyledHeader = styled.div`
     align-items: center;
   }
 
-  .cancelBTN {
-    margin: 5px 20px auto 10px;
+  .backBTN {
+    margin: 5px 10px auto auto;
     height: 30px;
-    width: 70px;
+    width: 50px;
     border-radius: 8px;
     border: none;
     outline: none;
-    background-color: #b00000;
+    background-color: #dea52a;
+    color: white;
+    box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
+    transition: .2s;
+    font-weight: bold;
+    :hover {
+      background-color: #ca9524;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      cursor: pointer;
+    }
+  }
+
+  .cancelBTN {
+    margin: 5px 20px auto 10px;
+    height: 30px;
+    width: 50px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: #d70505;
     color: white;
     box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
     transition: .2s;
@@ -48,7 +67,7 @@ export const StyledHeader = styled.div`
   .newNote {
     margin: 5px 0 auto auto;
     height: 30px;
-    width: 70px;
+    width: 50px;
     border-radius: 8px;
     border: none;
     outline: none;
@@ -74,7 +93,7 @@ export const StyledHeader = styled.div`
       height: 35px;
       width: 80px;
     }
-    .newNote {
+    .newNote, .backBTN {
       margin: 5px 20px auto auto;
       height: 35px;
       width: 80px;
@@ -107,12 +126,12 @@ export const Form = styled.form`
       outline: none;
       border-radius: 10px;
       background-color: #e7f8ff;
-      font-family: Arial, Helvetica, sans-serif;
       padding: 20px;
     }
   #title {
     font-weight: bold;
     height: 5%;
+    font-family: Arial, Helvetica, sans-serif;
     ::placeholder{
       font-weight: lighter;
     }
@@ -122,6 +141,7 @@ export const Form = styled.form`
     font-weight: lighter;
     margin-top: 15px;
     resize: none;
+    font-family: Arial, Helvetica, sans-serif;
     ::placeholder{
       font-weight: lighter;
     }

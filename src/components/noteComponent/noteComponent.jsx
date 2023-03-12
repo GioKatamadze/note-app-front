@@ -8,9 +8,11 @@ const NoteComponent = () => {
   const navigate = useNavigate()
   const [data, setData] = useState([])
   const Allnotes = data.map((note) => {
+
     return (
         <NoteDiv 
         key={note.id}
+        onClick={() => {navigate(`/notes/${note.id}`)}}
         >
           <h2>{note.title}</h2>
             <div className="content" >

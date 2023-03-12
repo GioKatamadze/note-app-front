@@ -1,16 +1,15 @@
 import React from "react";
 import { StyledContainer, Wrapper } from "./style.jsx";
-import ComponentToAdd from "../../components/header-add/note-add.jsx";
+import ComponentToEdit from "../../components/note-edit/note-edit.jsx";
 
-const AddNote = () => {
-
+const EditorDelete = () => {
     return (
         <StyledContainer>
             <Wrapper>
-                <ComponentToAdd />
+                <ComponentToEdit />
             </Wrapper>
        </StyledContainer>
     )
 }
 
-export default AddNote
+export default EditorDelete

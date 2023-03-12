@@ -7,6 +7,7 @@ import SignIn from "./Pages/sign-in/signin.jsx";
 import SignUp from "./Pages/sign-up/signup.jsx";
 import Home from "./Pages/home/Home.jsx";
 import AddNote from "./Pages/add-note/AddNote.jsx";
+import EditorDelete from "./Pages/edit-delete-note/Edit-Delete-note.jsx";
 import ProtectedRoute from "./routing/protectedRoute.js";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/notes/new" element={<AddNote />} />
+          <Route path="/notes/:id" element={<EditorDelete />} />
         </Routes>
       </div>
     </div>
