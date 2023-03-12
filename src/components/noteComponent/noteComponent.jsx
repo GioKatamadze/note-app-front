@@ -1,24 +1,42 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
-
-import { StyledContainer } from "./style.jsx";
+import React, { useEffect, useState } from "react";
+import { StyledContainer, NoteDiv, NoteDivWrapper } from "./style.jsx";
+import { getNotes } from "../../services/noteServices";
 
 const NoteComponent = () => {
 
-  const navigate = useNavigate();
-  const logOut = () => {
-    localStorage.removeItem("token")
-    navigate("/signin");
-  }
+  const [data, setData] = useState([])
+  const Allnotes = data.map((note) => {
+    return (
+        <NoteDiv 
+        key={note.id}
+        >
+          <h2>{note.title}</h2>
+            <div className="content" >
+                <p>{note.content}</p>
+            </div>
+        </NoteDiv>  
+    )
+})
+
+useEffect(() => {
+  const fetch = async () => {
+    try {
+      const notes = await getNotes()
+      setData(notes.data);
+    } catch (eror) {
+      if (eror.response.status === 404) {
+        console.log("error while fetching");
+      }
+    }
+  };
+  fetch();
+}, []);
 
     return (
         <StyledContainer>
-          <h1>My notes</h1>
-          <div>
-            <button className="newNote" >+ New Note</button>
-            <button className="logoutBTN" onClick={logOut}>Log out</button>
-          </div>
+          <NoteDivWrapper>
+            {Allnotes}
+          </NoteDivWrapper>
        </StyledContainer>
     )
 }

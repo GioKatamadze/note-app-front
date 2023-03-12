@@ -3,7 +3,7 @@ import { StyledContainer, Wrapper } from "./style.jsx";
 import Header from "../../components/header/Header.jsx";
 import NoteComponent from "../../components/noteComponent/noteComponent.jsx";
 
-const Home = () => {
+const AddNote = () => {
 
     return (
         <StyledContainer>
@@ -15,4 +15,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default AddNote

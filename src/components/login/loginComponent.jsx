@@ -5,6 +5,7 @@ import { userLogin } from "../../services/userServices";
 import { HashLink } from 'react-router-hash-link';
 import toast from 'react-hot-toast';
 import Button from "./button/login-button.jsx";
+import { getNotes } from "../../services/noteServices";
 
 const LoginForm = () => {
 
@@ -29,7 +30,9 @@ const LoginForm = () => {
               email: data.email,
               user_id: data.email
             }
+            const notes = await getNotes()
             localStorage.setItem("newData", JSON.stringify(newData))
+            localStorage.setItem("notes", JSON.stringify(notes))
             navigate("/")
             toast('Welcome!', {
               icon: '👏',
@@ -42,10 +45,10 @@ const LoginForm = () => {
     };
 
     useEffect(() => {
-      if (localStorage.token) {
+      if (localStorage.newData) {
         navigate("/");
       }
-    }, [localStorage.token, navigate]);
+    }, [localStorage.newData, navigate]);
     return (
         <StyledForm>
             <form onSubmit={(e) => handleSubmit(e)}>

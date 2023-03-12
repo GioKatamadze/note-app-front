@@ -2,56 +2,48 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   width: 100%;
+  height: 100%;
   height: max-content;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-
-  h1 {
-    font-size: 26px;
-    color: #1b1b1beb;
-    margin: 25px;
-    :hover {
-      cursor: pointer;
-    }
-  }
-
-  .logoutBTN {
-    margin: 25px;
-    height: 35px;
-    width: 80px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    background-color: red;
-    color: white;
-    box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
-    transition: .2s;
-    font-weight: bold;
-    :hover {
-      background-color: #d70505;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-      cursor: pointer;
-    }
-  }
-
-  .newNote {
-    margin: 25px 0 auto auto;
-    height: 35px;
-    width: 150px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    background-color: #fe9b29;
-    color: white;
-    font-weight: bold;
-    box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
-    transition: .2s;
-    :hover {
-      background-color: #ff8800;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-      cursor: pointer;
-    }
-  }
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
 `;
+
+export const NoteDivWrapper = styled.div`
+  margin: 10px;
+  margin-top: 0;
+  width: 100%;
+  height: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  @media only screen and (min-width: 600px) {
+    margin: 15px;
+    margin-top: 0;
+  }
+`
+
+export const NoteDiv = styled.div`
+  padding: 20px;
+  margin: 10px;
+  flex-grow: 1;
+  border-radius: 10px;
+  background-color: #ffde9d;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  transition: .1s;
+  h2, p {
+    color: black;
+  }
+  .content {
+    margin-top: 5px;
+    line-height: 20px;
+  }
+  :hover{
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
+  }
+`

@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import SignIn from "./Pages/sign-in/signin.jsx";
 import SignUp from "./Pages/sign-up/signup.jsx";
 import Home from "./Pages/home/Home.jsx";
+import AddNote from "./Pages/add-note/AddNote.jsx";
 import ProtectedRoute from "./routing/protectedRoute.js";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           </Route>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/chatroom/:id" element={<ChatRoom />} /> */}
+          <Route path="/notes/new" element={<AddNote />} />
         </Routes>
       </div>
     </div>
