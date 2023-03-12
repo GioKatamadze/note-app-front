@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { StyledContainer, NoteDiv, NoteDivWrapper } from "./style.jsx";
 import { getNotes } from "../../services/noteServices";
+import { useNavigate } from "react-router-dom";
 
 const NoteComponent = () => {
 
+  const navigate = useNavigate()
   const [data, setData] = useState([])
   const Allnotes = data.map((note) => {
     return (
@@ -30,7 +32,7 @@ useEffect(() => {
     }
   };
   fetch();
-}, []);
+}, [navigate]);
 
     return (
         <StyledContainer>

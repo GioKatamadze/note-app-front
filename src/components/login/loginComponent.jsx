@@ -5,42 +5,30 @@ import { userLogin } from "../../services/userServices";
 import { HashLink } from 'react-router-hash-link';
 import toast from 'react-hot-toast';
 import Button from "./button/login-button.jsx";
-import { getNotes } from "../../services/noteServices";
 
 const LoginForm = () => {
 
     const navigate = useNavigate();
     const [values, setValues] = useState({ email: "", password: "" });
 
-    const generateError = (error) =>
-      toast.error(error);
     const handleSubmit = async (e) => {
       e.preventDefault();
-      try {
-        const { data } = await userLogin(values)
-        if (data) {
-          if (data.errors) {
-            const { email, password } = data.errors;
-            if (email) generateError(email);
-            else if (password) generateError(password);
-          } else {
-            const newData = {
-              token: data.token,
-              name: data.name,
-              email: data.email,
-              user_id: data.email
-            }
-            const notes = await getNotes()
-            localStorage.setItem("newData", JSON.stringify(newData))
-            localStorage.setItem("notes", JSON.stringify(notes))
-            navigate("/")
-            toast('Welcome!', {
-              icon: '👏',
-            });
-          }
+      const { data } = await userLogin(values)
+      if (data) {
+        const newData = {
+          token: data.token,
+          name: data.name,
+          email: data.email,
+          user_id: data.user_id
         }
-      } catch (ex) {
-        console.log(ex);
+        localStorage.setItem("token", JSON.stringify(newData.token))
+        localStorage.setItem("user", JSON.stringify(newData.user_id))
+        navigate("/")
+        toast('Welcome!', {
+          icon: '👏',
+        });
+      } else {
+        toast.error("Oops.. Try Again")
       }
     };
 
@@ -80,12 +68,9 @@ const LoginForm = () => {
                 </Paragraph>
             </form>
             <p className="lastp">
-                To test app, use <br/>
+                Signup or use <br/>
                 email: demo@user.com <br/>
                 password: demo123
-            </p>
-            <p className="lastp">
-                or signup if you wish
             </p>
         </StyledForm>
     )

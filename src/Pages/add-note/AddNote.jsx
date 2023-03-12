@@ -1,15 +1,13 @@
 import React from "react";
 import { StyledContainer, Wrapper } from "./style.jsx";
-import Header from "../../components/header/Header.jsx";
-import NoteComponent from "../../components/noteComponent/noteComponent.jsx";
+import ComponentToAdd from "../../components/header-add/HeaderToAdd.jsx";
 
 const AddNote = () => {
 
     return (
         <StyledContainer>
             <Wrapper>
-                <Header />
-                <NoteComponent />
+                <ComponentToAdd />
             </Wrapper>
        </StyledContainer>
     )

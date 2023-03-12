@@ -1,16 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
-import { addNote } from "../../services/noteServices.js";
-
 import { StyledContainer } from "./style.jsx";
 
 const Header = () => {
 
   const navigate = useNavigate();
-
   const logOut = () => {
-    localStorage.removeItem("newData")
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
     navigate("/signin");
   }
 

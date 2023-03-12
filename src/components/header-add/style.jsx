@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-export const StyledContainer = styled.div`
+export const StyledHeader = styled.div`
   width: 100%;
+  height: 5%;
   height: max-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  position: sticky;
-  top: 0;
   background-color: #FBFAFF;
 
   h1 {
@@ -20,14 +19,21 @@ export const StyledContainer = styled.div`
     }
   }
 
-  .logoutBTN {
-    margin: 15px 20px 15px 10px;
+  .btnWrapper {
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cancelBTN {
+    margin: 5px 20px auto 10px;
     height: 30px;
     width: 70px;
     border-radius: 8px;
     border: none;
     outline: none;
-    background-color: red;
+    background-color: #b00000;
     color: white;
     box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
     transition: .2s;
@@ -40,19 +46,19 @@ export const StyledContainer = styled.div`
   }
 
   .newNote {
-    margin: 15px 0 auto auto;
+    margin: 5px 0 auto auto;
     height: 30px;
-    width: 90px;
+    width: 70px;
     border-radius: 8px;
     border: none;
     outline: none;
-    background-color: #fe9b29;
+    background-color: #268018;
     color: white;
     font-weight: bold;
     box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
     transition: .2s;
     :hover {
-      background-color: #ff8800;
+      background-color: #2b9b1a;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
       cursor: pointer;
     }
@@ -63,15 +69,69 @@ export const StyledContainer = styled.div`
       font-size: 26px;
       margin: 25px;
     }
-    .logoutBTN {
-      margin: 25px;
+    .cancelBTN {
+      margin: 5px 25px auto auto;
       height: 35px;
       width: 80px;
     }
     .newNote {
-      margin: 25px 0 auto auto;
+      margin: 5px 20px auto auto;
       height: 35px;
-      width: 150px;
+      width: 80px;
     }
 }
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  #title, #content {
+      width: 100%;
+      margin: auto 20px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      background-color: #e7f8ff;
+      padding: 20px;
+    }
+  #title {
+    font-weight: bold;
+    height: 5%;
+    ::placeholder{
+      font-weight: lighter;
+    }
+  }
+  #content {
+    height: 75%;
+    font-weight: lighter;
+    margin-top: 15px;
+    resize: none;
+    ::placeholder{
+      font-weight: lighter;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    #title, #content {
+      margin: auto 25px;
+    }
+    #content {
+      margin-top: 20px;
+    }
+  }
 `;
