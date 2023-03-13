@@ -13,8 +13,14 @@ const ComponentToEdit = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { data } = await editNote(noteID, values)
+
+    const newTitle = values.title
+    const newContent = values.content
+    const dataToEdit = { title: newTitle, content: newContent }
+
+    const data = await editNote(noteID, dataToEdit)
     if (data) {
+      console.log(data)
       setValues({ title: "", content: "" })
       toast.success("Note Edited")
       navigate("/");
