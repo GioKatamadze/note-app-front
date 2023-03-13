@@ -23,7 +23,7 @@ const LoginForm = () => {
         }
         localStorage.setItem("token", JSON.stringify(newData.token))
         localStorage.setItem("user", JSON.stringify(newData.user_id))
-        navigate("/")
+        navigate("/home")
         toast('Welcome!', {
           icon: '👏',
         });
@@ -34,7 +34,7 @@ const LoginForm = () => {
 
     useEffect(() => {
       if (localStorage.newData) {
-        navigate("/");
+        navigate("/home");
       }
     }, [localStorage.newData, navigate]);
     return (

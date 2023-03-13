@@ -17,12 +17,13 @@ function App() {
         <Toaster />
         <Routes>
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
           </Route>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/notes/new" element={<AddNote />} />
           <Route path="/notes/:id" element={<EditorDelete />} />
+          <Route path="*" element={<SignIn />} />
         </Routes>
       </div>
     </div>

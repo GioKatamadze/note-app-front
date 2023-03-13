@@ -23,7 +23,7 @@ const ComponentToEdit = () => {
       console.log(data)
       setValues({ title: "", content: "" })
       toast.success("Note Edited")
-      navigate("/");
+      navigate("/home");
     } else {
       toast.error("This didn't work.")
     }
@@ -34,7 +34,7 @@ const ComponentToEdit = () => {
     const { data } = await deleteNote(noteID)
     if (data) {
       toast.success("Note Deleted")
-      navigate("/");
+      navigate("/home");
     } else {
       toast.error("This didn't work.")
     }
@@ -42,7 +42,7 @@ const ComponentToEdit = () => {
 
   const Cancel = () => {
     setValues({ title: "", content: "" })
-    navigate("/");
+    navigate("/home");
   }
 
   useEffect(() => {

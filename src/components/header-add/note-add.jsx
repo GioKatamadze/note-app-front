@@ -18,7 +18,7 @@ const ComponentToAdd = () => {
     if (data) {
       setValues({ title: "", content: "", user_id: finalUser })
       toast.success("Note Created Successfully")
-      navigate("/");
+      navigate("/home");
     } else {
       toast.error("This didn't work.")
     }
@@ -26,7 +26,7 @@ const ComponentToAdd = () => {
 
   const Cancel = () => {
     setValues({ title: "", content: "", user_id: finalUser })
-    navigate("/");
+    navigate("/home");
   }
 
     return (
