@@ -13,7 +13,7 @@ export const addNote = (data) => {
 };
 
 export const editNote = (id, data) => {
-  return instance.get("/notes/" + id, data);
+  return instance.put("/notes/" + id, data);
 };
 
 export const deleteNote = (id) => {
